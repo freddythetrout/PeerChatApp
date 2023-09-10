@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: azure;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="484.0" layoutY="342.0" mnemonicParsing="false" text="Send message" />
+      <Button layoutX="268.0" layoutY="342.0" mnemonicParsing="false" text="set Host" />
+      <TextField editable="false" layoutX="14.0" layoutY="14.0" prefHeight="253.0" prefWidth="574.0" promptText="Empty Chat" />
+      <TextField layoutX="14.0" layoutY="287.0" prefHeight="40.0" prefWidth="574.0" promptText="Type your message" />
+   </children>
+</AnchorPane>
