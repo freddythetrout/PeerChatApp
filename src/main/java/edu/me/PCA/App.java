@@ -2,6 +2,9 @@ package edu.me.PCA;
 
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,8 +17,12 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
+	private final static Logger logger = LogManager.getLogger(App.class);
+
 	public static void main(String[] args) {
+		logger.info("test");
 		launch();
+
 	}
 
 	@Override
