@@ -1,4 +1,4 @@
-module PCA {
+module PeerChatApp {
 
 	exports edu.me.PCA;
 
