@@ -19,12 +19,12 @@ public class ChatSession {
 		this.contact.setContactName(name);
 	}
 
-	public void addSendMessage(String Message) {
-
+	public void addSendMessage(Message Message) {
+		chat.add(Message);
 	}
 
 	public void addRecievedMessage(Message message) {
-
+		chat.add(message);
 	}
 
 }

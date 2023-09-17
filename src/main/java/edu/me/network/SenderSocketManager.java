@@ -11,12 +11,13 @@ import edu.me.data.Message;
 
 public class SenderSocketManager implements Runnable {
 
-	private static final Logger logger = LogManager.getLogger(RecieverSocketManager.class);
+	private static final Logger logger = LogManager.getLogger(SenderSocketManager.class);
 
 	private Message message;
 	private Integer port;
 	private String ip;
 	private ObjectOutputStream objectOutputStream;
+	private Socket senderSocket;
 
 	public SenderSocketManager(Message message, String ip, Integer port) {
 		this.message = message;
@@ -25,7 +26,7 @@ public class SenderSocketManager implements Runnable {
 	}
 
 	private void createOutputStreamToSocket() {
-		Socket senderSocket;
+
 		ObjectOutputStream oos = null;
 		try {
 			senderSocket = new Socket(ip, port);
@@ -57,8 +58,16 @@ public class SenderSocketManager implements Runnable {
 
 	@Override
 	public void run() {
+
 		createOutputStreamToSocket();
 		sendMessage();
+		try {
+			this.objectOutputStream.close();
+			this.senderSocket.close();
+		} catch (IOException e) {
+			logger.error("Could not close sender socket releated resources", e);
+			e.printStackTrace();
+		}
 
 	}
 
