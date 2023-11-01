@@ -19,6 +19,7 @@ public class RecieverSocketManager implements Runnable {
 	private Integer port;
 	private ChatServiceInterface chatService;
 	private Thread nextMessageThread;
+	private ServerSocket serverSocket;
 
 	public RecieverSocketManager(Integer port, ChatServiceInterface chatService) {
 		this.port = port;
@@ -27,24 +28,22 @@ public class RecieverSocketManager implements Runnable {
 
 	public void run() {
 
-		// prepare application to recieve next message
-		RecieverSocketManager recieverSocketManager = new RecieverSocketManager(port, chatService);
-		nextMessageThread = new Thread(recieverSocketManager);
-
-		ServerSocket serverSocket;
 		try {
-
 			serverSocket = new ServerSocket(port);
-			logger.info("Reciever Socket in accept mode waiting for Messages");
-			activeSocket = serverSocket.accept();
 
-			// enable Application to recieve next Message
-			recieverSocketManager.run();
-			this.chatService.setRecieverThread(nextMessageThread);
+			this.chatService.setrecieverServerSocket(serverSocket);
 
-			ObjectInputStream objInputStream = new ObjectInputStream(activeSocket.getInputStream());
-			Message recievedMessage = (Message) objInputStream.readObject();
-			chatService.recieveMessage(recievedMessage);
+			while (true) {
+				logger.info("Reciever Socket in accept mode waiting for Messages");
+				activeSocket = serverSocket.accept();
+
+				ObjectInputStream objInputStream = new ObjectInputStream(activeSocket.getInputStream());
+
+				Message recievedMessage = (Message) objInputStream.readObject();
+
+				logger.info("Object recieved");
+				chatService.recieveMessage(recievedMessage, activeSocket.getInetAddress().getHostAddress());
+			}
 
 		} catch (IOException e) {
 			logger.error("IOException", e);
@@ -54,10 +53,6 @@ public class RecieverSocketManager implements Runnable {
 			e.printStackTrace();
 		}
 
-	}
-
-	public void stopServer() throws IOException {
-		activeSocket.close();
 	}
 
 }

@@ -20,7 +20,7 @@ public class App extends Application {
 	private final static Logger logger = LogManager.getLogger(App.class);
 
 	public static void main(String[] args) {
-		logger.info("test");
+		ChatService chatServide = new ChatService();
 		launch();
 
 	}

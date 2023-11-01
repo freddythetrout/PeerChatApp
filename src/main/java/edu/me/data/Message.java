@@ -1,8 +1,6 @@
 package edu.me.data;
 
 import java.io.Serializable;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 
 import org.apache.logging.log4j.LogManager;
@@ -14,16 +12,11 @@ public class Message implements Serializable {
 	private String messageText;
 	private LocalDateTime time;
 	private String sender;
+	private MessageDirection direction = MessageDirection.OUT;
 	private final Logger logger = LogManager.getLogger(Message.class);
 
 	public Message(String messageText) {
 		this.messageText = messageText;
-		try {
-			this.sender = InetAddress.getLocalHost().toString();
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-			logger.error("Could not recieve IP Adress of the message creator", e);
-		}
 		this.time = LocalDateTime.now();
 	}
 
@@ -37,6 +30,14 @@ public class Message implements Serializable {
 
 	public String getSender() {
 		return sender;
+	}
+
+	public void setSender(String ipAdress) {
+		this.sender = ipAdress;
+	}
+
+	public void switchDirection() {
+		this.direction = MessageDirection.IN;
 	}
 
 }

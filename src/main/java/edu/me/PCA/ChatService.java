@@ -1,5 +1,8 @@
 package edu.me.PCA;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,16 +15,16 @@ public class ChatService implements ChatServiceInterface {
 
 	private static final Logger logger = LogManager.getLogger(ChatService.class);
 
-	private ChatSession chatSession;
-	private Thread recieverThread;
+	public ChatSession chatSession;
+	private ServerSocket recieverServerSocket;
 	private Integer port = 6666;
 
 	public ChatService() {
 		this.chatSession = new ChatSession();
 
 		RecieverSocketManager recieverSocketManager = new RecieverSocketManager(port, this);
-		recieverThread = new Thread(recieverSocketManager);
-		recieverSocketManager.run();
+		Thread recieverThread = new Thread(recieverSocketManager);
+		recieverThread.start();
 
 		logger.info("Application startet and chat service initiated");
 	}
@@ -32,17 +35,24 @@ public class ChatService implements ChatServiceInterface {
 		Message message = new Message(messageText);
 		String destinationIP = chatSession.getContact().getIpAdress();
 
+		logger.info("Try to send message");
 		SenderSocketManager senderSocketManager = new SenderSocketManager(message, destinationIP, this.port);
-		new Thread(senderSocketManager).run();
+		new Thread(senderSocketManager).start();
 
 		chatSession.addSendMessage(message);
+
 		// update gui
 
-		logger.info(String.format("A string \" %s \" ", messageText));
+		logger.info(String.format("Message sent:  \" %s \" ", messageText));
 	}
 
 	@Override
-	public void recieveMessage(Message message) {
+	public void recieveMessage(Message message, String ipAdress) {
+		message.switchDirection();
+		message.setSender(ipAdress);
+
+		logger.info(String.format("Message recieved:  \" %s \" ", message.getMessageText()));
+
 		chatSession.addRecievedMessage(message);
 		// update gui
 
@@ -51,12 +61,21 @@ public class ChatService implements ChatServiceInterface {
 	@Override
 	public void sethost(String ipAdress) {
 		this.chatSession.setContactIP(ipAdress);
+		logger.info(String.format("Host set:  \" %s \" ", ipAdress));
 
 	}
 
 	@Override
-	public void setRecieverThread(Thread recieverThread) {
-		this.recieverThread = recieverThread;
+	public void setrecieverServerSocket(ServerSocket ss) {
+		this.recieverServerSocket = ss;
 	}
 
+	public void stopRecieverServerSocket() {
+		try {
+			this.recieverServerSocket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

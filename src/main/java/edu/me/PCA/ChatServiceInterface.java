@@ -1,5 +1,7 @@
 package edu.me.PCA;
 
+import java.net.ServerSocket;
+
 import edu.me.data.Message;
 
 /**
@@ -14,10 +16,10 @@ public interface ChatServiceInterface {
 	 */
 	public void sendMessage(String text);;
 
-	public void recieveMessage(Message message);
-
 	public void sethost(String ipAdress);
 
-	public void setRecieverThread(Thread recieverThread);
+	public void recieveMessage(Message message, String ipAdress);
+
+	void setrecieverServerSocket(ServerSocket ss);
 
 }

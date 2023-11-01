@@ -27,4 +27,9 @@ public class ChatSession {
 		chat.add(message);
 	}
 
+	public Integer getChatSize() {
+
+		return chat.size();
+	}
+
 }
