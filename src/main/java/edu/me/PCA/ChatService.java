@@ -40,9 +40,6 @@ public class ChatService implements ChatServiceInterface {
 		new Thread(senderSocketManager).start();
 
 		chatSession.addSendMessage(message);
-
-		// update gui
-
 		logger.info(String.format("Message sent:  \" %s \" ", messageText));
 	}
 
@@ -74,8 +71,12 @@ public class ChatService implements ChatServiceInterface {
 		try {
 			this.recieverServerSocket.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("socket in accept mode closed.");
 		}
 	}
+
+	public String getHost() {
+		return chatSession.getContactIP();
+	}
+
 }

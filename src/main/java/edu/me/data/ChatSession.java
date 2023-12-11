@@ -15,6 +15,10 @@ public class ChatSession {
 		this.contact.setIpAdress(ipAdress);
 	}
 
+	public String getContactIP() {
+		return contact.getIpAdress();
+	}
+
 	public void setContactName(String name) {
 		this.contact.setContactName(name);
 	}
