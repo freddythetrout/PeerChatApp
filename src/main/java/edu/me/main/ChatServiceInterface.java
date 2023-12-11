@@ -1,4 +1,4 @@
-package edu.me.PCA;
+package edu.me.main;
 
 import java.net.ServerSocket;
 

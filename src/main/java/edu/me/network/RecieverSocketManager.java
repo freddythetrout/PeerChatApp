@@ -8,8 +8,8 @@ import java.net.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import edu.me.PCA.ChatServiceInterface;
 import edu.me.data.Message;
+import edu.me.main.ChatServiceInterface;
 
 public class RecieverSocketManager implements Runnable {
 

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.me.PCA.ChatService;
+import edu.me.main.ChatService;
 
 public class TestLoopBackMessage {
 

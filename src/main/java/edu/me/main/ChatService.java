@@ -1,4 +1,4 @@
-package edu.me.PCA;
+package edu.me.main;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -26,7 +26,7 @@ public class ChatService implements ChatServiceInterface {
 		Thread recieverThread = new Thread(recieverSocketManager);
 		recieverThread.start();
 
-		logger.info("Application startet and chat service initiated");
+		logger.info("chatservice is up");
 	}
 
 	@Override
