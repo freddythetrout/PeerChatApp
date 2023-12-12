@@ -1,6 +1,6 @@
 module PeerChatApp {
 
-	exports edu.me.main;
+	exports edu.me.main to javafx.graphics;
 	exports edu.me.view;
 
 	requires javafx.base;
