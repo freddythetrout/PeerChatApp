@@ -19,7 +19,7 @@ public class SceneBuilder {
 	Stage primaryStage;
 	SceneController sceneController;
 	ChatService chatService = new ChatService();
-	private final static Logger logger = LogManager.getLogger(App.class);
+	private final static Logger logger = LogManager.getLogger(JavaFXApp.class);
 
 	public SceneBuilder(Stage primaryStage, SceneController sceneController) {
 		this.primaryStage = primaryStage;

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import edu.me.main.App;
+import edu.me.main.JavaFXApp;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -14,7 +14,7 @@ public class SceneController {
 	private Stage primaryStage;
 	private HashMap<String, Scene> sceneCollection = new HashMap<>();
 	private Scene currentActiveScene = null;
-	private final static Logger logger = LogManager.getLogger(App.class);
+	private final static Logger logger = LogManager.getLogger(JavaFXApp.class);
 
 	public SceneController() {
 	}

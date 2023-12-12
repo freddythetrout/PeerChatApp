@@ -12,17 +12,28 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>18</maven.compiler.source>
 		<maven.compiler.target>18</maven.compiler.target>
+		<main.class>edu.me.main.Main</main.class>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
-			<version>20.0.1</version>
+			<version>20.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-fxml</artifactId>
-			<version>20.0.1</version>
+			<version>20.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-base</artifactId>
+			<version>20.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics</artifactId>
+			<version>20.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -47,20 +58,38 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
+				<version>3.8.1</version>
 				<configuration>
-					<release>11</release>
+					<release>${maven.compiler.release}</release>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.openjfx</groupId>
 				<artifactId>javafx-maven-plugin</artifactId>
-				<version>0.0.6</version>
+				<version>0.0.8</version>
+				<configuration>
+					<mainClass>${main.class}</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+				</configuration>
 				<executions>
 					<execution>
-						<id>default-cli</id>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
 						<configuration>
-							<mainClass>edu.me.main.App</mainClass>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>${main.class}</mainClass>
+								</transformer>
+							</transformers>
 						</configuration>
 					</execution>
 				</executions>
