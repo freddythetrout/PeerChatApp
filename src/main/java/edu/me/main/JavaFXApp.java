@@ -28,6 +28,10 @@ public class JavaFXApp extends Application {
 
 		tempScene = sceneBuilder.buildScene("MainView.fxml");
 		sceneController.addScene("MainView.fxml", tempScene);
+
+		tempScene = sceneBuilder.buildScene("TestView.fxml");
+		sceneController.addScene("TestView.fxml", tempScene);
+
 		sceneController.setCurrentScene("MainView.fxml");
 
 		logger.info("App setup ready");

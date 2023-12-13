@@ -51,7 +51,6 @@ public class ChatService implements ChatServiceInterface {
 		logger.info(String.format("Message recieved:  \" %s \" ", message.getMessageText()));
 
 		chatSession.addRecievedMessage(message);
-		// update gui
 
 	}
 
