@@ -36,7 +36,7 @@ public class MainViewController implements ViewController, MessageObserver {
 	}
 
 	private void setMessageObesrver() {
-		chatService.chatSession.subscribe(this);
+		chatService.subscribe(this);
 	}
 
 	public void setSceneController(SceneController sceneController) {

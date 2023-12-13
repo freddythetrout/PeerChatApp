@@ -10,6 +10,7 @@ public class Message implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String messageText;
+	private byte[] image;
 	private LocalDateTime time;
 	private String sender;
 	private MessageDirection direction = MessageDirection.OUT;

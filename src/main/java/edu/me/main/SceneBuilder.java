@@ -25,6 +25,7 @@ public class SceneBuilder {
 		this.primaryStage = primaryStage;
 		this.sceneController = sceneController;
 
+		primaryStage.setTitle("PeerChatApp");
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent t) {

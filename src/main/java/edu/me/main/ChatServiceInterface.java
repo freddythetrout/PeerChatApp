@@ -3,6 +3,7 @@ package edu.me.main;
 import java.net.ServerSocket;
 
 import edu.me.data.Message;
+import edu.me.view.MessageObserver;
 
 /**
  * 
@@ -21,5 +22,9 @@ public interface ChatServiceInterface {
 	public void recieveMessage(Message message, String ipAdress);
 
 	void setrecieverServerSocket(ServerSocket ss);
+
+	public String getHost();
+
+	public void subscribe(MessageObserver msobs);
 
 }

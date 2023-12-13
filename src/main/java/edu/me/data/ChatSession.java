@@ -10,6 +10,10 @@ public class ChatSession implements Observable {
 	private ArrayList<MessageObserver> subscribers = new ArrayList<>();
 	private Contact contact = new Contact();
 
+	public ChatSession() {
+		this.contact.setIpAdress("127.0.0.1");
+	}
+
 	public Contact getContact() {
 		return contact;
 	}

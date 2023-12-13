@@ -10,12 +10,13 @@ import edu.me.data.ChatSession;
 import edu.me.data.Message;
 import edu.me.network.RecieverSocketManager;
 import edu.me.network.SenderSocketManager;
+import edu.me.view.MessageObserver;
 
 public class ChatService implements ChatServiceInterface {
 
 	private static final Logger logger = LogManager.getLogger(ChatService.class);
 
-	public ChatSession chatSession;
+	private ChatSession chatSession;
 	private ServerSocket recieverServerSocket;
 	private Integer port = 6666;
 
@@ -74,8 +75,15 @@ public class ChatService implements ChatServiceInterface {
 		}
 	}
 
+	@Override
 	public String getHost() {
 		return chatSession.getContactIP();
+	}
+
+	@Override
+	public void subscribe(MessageObserver msobs) {
+		chatSession.subscribe(msobs);
+
 	}
 
 }
